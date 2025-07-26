@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Login</title>
+    <style>
+        body {
+            background-color: #76f191;
+            background-image: url("/static/images/pic2.jpg");
+            background-size: cover;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: rgba(60, 109, 4, 0.856);
+            text-shadow: #1d421a;
+            text-decoration: underline brown;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            margin: 0;
+            background-color: rgb(134, 233, 110);
+            padding: 10px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .ownerlogin-form {
+            background-color: rgba(173, 243, 154, 0.856);
+            max-width: 350px;
+            width: 100%;
+            margin: auto;
+            padding: 2em;
+            border: 3px solid #197901;
+            border-radius: 1em;
+        }
+
+        .ownerlogin-form div {
+            margin-bottom: 1.5em;
+        }
+
+        .ownerlogin-form label {
+            display: block;
+            margin-bottom: .5em;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        .ownerlogin-form input {
+            width: 100%;
+            border: 1px solid #ff0000;
+            padding: .7em;
+            font-size: 1em;
+            border-radius: .5em;
+            background-color: #cbe9d2;
+            box-sizing: border-box;
+        }
+
+        .ownerlogin-form button {
+            padding: .7em;
+            color: #fff;
+            background-color: #1C1F25;
+            border: none;
+            border-radius: .5em;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .ownerlogin-form button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Owner login</h2>
+    <form class="ownerlogin-form" method="POST" action="{{ url_for('ownerlogin') }}">
+        <div>
+            <label for="number">Phone number:</label>
+            <input type="text" id="number" name="number" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+</body>
+
+</html>

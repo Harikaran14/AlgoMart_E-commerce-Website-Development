@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Vegetable Prices and Quantities</title>
+    <style>
+        body {
+            background-color: #76f191;
+            background-image: url('/static/images/pic2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: rgba(60, 109, 4, 0.856);
+            text-shadow: #1d421a;
+            text-decoration: underline brown;
+            margin: 20px 0;
+        }
+
+        form {
+            background-color: rgba(173, 243, 154, 0.856);
+            padding: 20px;
+            border-radius: 1em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #c7e7a9;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: .5em;
+            border: 1px solid #ccc;
+            border-radius: .3em;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #1C1F25;
+            border: none;
+            border-radius: .5em;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Update Vegetable Prices and Quantities</h1>
+    <form action="{{ url_for('update') }}" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Vegetable</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vegetable in vegetables %}
+                <tr>
+                    <td><input type="hidden" name="name" value="{{ vegetable.name }}">{{ vegetable.name }}</td>
+                    <td><input type="text" name="price[{{ vegetable.name }}]" value="{{ vegetable.price }}"></td>
+                    <td><input type="text" name="quantity[{{ vegetable.name }}]" value="{{ vegetable.quantity }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+</html>

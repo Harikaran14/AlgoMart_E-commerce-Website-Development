@@ -1,0 +1,55 @@
+body {
+    background-image: url('pic2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+  }
+  
+.center {
+    text-align: center;
+    margin-top: 0.5em;
+   
+    color: rgb(14, 3, 14);
+    
+  }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+td, th {
+    border: 1px solid #140202;
+    background-color: wheat;
+    text-align: left;
+    padding: 10px;
+    color: black;
+    text-size-adjust: 30;
+  }
+tr,tr{
+    background-color: rebeccapurple;
+}
+h1{
+    text-align: left;
+    font-size: 40;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+} 
+button.button {
+    background-color: #661623;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+  }

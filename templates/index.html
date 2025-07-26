@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <a href="{{ url_for('profile') }}">Profile</a>
+    </div>
+    <div class="container">
+        <header>
+            <div>
+                <h1>ABC VEGETABLE SHOP</h1>
+                <div style="display: flex; gap:10px;">                
+                    <input onchange="onChange(event)" class="search-bar" name="search" value=""
+                    placeholder="Search for a vegetable" />
+                    <button style="border: none; outline: none; border-radius: 20px; padding:10px 20px; cursor: pointer;" onclick="searchItems()">Search</button>
+                    <button style="border: none; outline: none; border-radius: 20px; padding: 10px 20px; cursor: pointer;" onclick="initApp()">X</button>
+                </div>
+
+            </div>
+
+            <div class="shopping">
+                <img src="/static/images/add-to-cart.png">
+                <span class="quantity">0</span>
+            </div>
+        </header>
+        <div class="list"></div>
+        <div class="search-div"></div>
+    </div>
+
+    <div class="cart">
+        <h1>Cart</h1>
+        <div class="top">
+            <div>
+                <h2>Item</h2>
+            </div>
+            <div>
+                <h2>Price</h2>
+            </div>
+            <div>
+                <h2>Quantity</h2>
+            </div>
+        </div>
+        <ol class="listCart"></ol>
+
+        <div class="checkOut">
+            <div>
+                <form id="checkoutForm" action="{{url_for('bill')}}" method="POST">
+                    <input type="hidden" name="cartData" id="cartData">
+                    <!--<button type="submit">Proceed</button>-->
+                    <button class="total" type="submit" id="checkoutBtn" disabled>Bill 0</button>
+
+                </form>
+            </div>
+            <div class="closeShopping">Close</div>
+        </div>
+    </div>
+
+    <script>
+        let products = [];
+        let listCards = [];
+        let search = "";
+
+        // Function to save cart data to local storage
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cartItems', JSON.stringify(listCards.filter(item => item != null)));
+        }
+
+        // Function to load cart data from local storage
+        function loadCartFromLocalStorage() {
+            const storedCartItems = localStorage.getItem('cartItems');
+            if (storedCartItems) {
+                listCards = JSON.parse(storedCartItems);
+            }
+        }
+
+        // When the page loads, load cart items from local storage
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartFromLocalStorage();
+            fetch('/api/products')
+                .then(response => response.json())
+                .then(data => {
+                    products = data;
+                    initApp();
+                    reloadCard();
+                });
+        });
+
+        let openShopping = document.querySelector('.shopping');
+        let closeShopping = document.querySelector('.closeShopping');
+        let list = document.querySelector('.list');
+        let searchDiv = document.querySelector('.search-div');
+        let listCard = document.querySelector('.listCart');
+        let body = document.querySelector('body');
+        let total = document.querySelector('.total');
+        let quantity = document.querySelector('.quantity');
+        let checkoutForm = document.getElementById('checkoutForm');
+        let cartDataInput = document.getElementById('cartData');
+        let checkoutBtn = document.getElementById('checkoutBtn');
+
+        openShopping.addEventListener('click', () => {
+            body.classList.add('active');
+        });
+
+        closeShopping.addEventListener('click', () => {
+            body.classList.remove('active');
+        });
+
+        function initApp() {
+            list.innerHTML=""
+            searchDiv.innerHTML=""
+            
+            list.style.display = "grid";
+        
+            products.forEach((product, index) => {
+                let newDiv = document.createElement('div');
+                newDiv.classList.add('item');
+                newDiv.innerHTML = `
+            <div class="available">Available: ${product.quantity}</div>
+            <img src="/static/images/${product.image}" alt="${product.name}">
+            <div class="title">${product.name}</div>
+            <div class="price">${product.price.toLocaleString()}</div>`;
+                if (product.quantity > 0) {
+                    newDiv.innerHTML += `<button onclick="addToCard(${index})">Add To Cart</button>`;
+                } else {
+                    newDiv.innerHTML += `<button disabled>Add To Cart (Out of Stock)</button>`;
+                }
+                list.appendChild(newDiv);
+            });
+        }
+
+        function addToCard(key) {
+            if (listCards[key] == null) {
+                listCards[key] = { ...products[key], quantity: 1 };
+            } else {
+                listCards[key].quantity += 1;
+            }
+            saveCartToLocalStorage();
+            reloadCard();
+        }
+
+        function reloadCard() {
+            listCard.innerHTML = '';
+            let count = 0;
+            let totalPrice = 0;
+            let allAvailable = true; // Flag to track if all items have available quantity
+            listCards.forEach((item, index) => {
+                if (item) {
+                    totalPrice += item.price * item.quantity;
+                    count += item.quantity;
+                    let newDiv = document.createElement('li');
+                    newDiv.innerHTML = `
+                <div><img src="/static/images/${item.image}" alt="${item.name}"></div>
+                <div>${item.name}</div>
+                <div>${(item.price * item.quantity).toLocaleString()}</div>
+                <div>
+                    <button onclick="changeQuantity(${index}, ${item.quantity - 1})">-</button>
+                    <div class="count">${item.quantity}</div>
+                    <button onclick="changeQuantity(${index}, ${item.quantity + 1})">+</button>
+                </div>`;
+                    listCard.appendChild(newDiv);
+
+                    // Check if available quantity is less than cart quantity
+                    if (item.quantity > item.available) {
+                        allAvailable = false;
+                    }
+                }
+            });
+            total.innerText = "Bill " + totalPrice.toLocaleString();
+            quantity.innerText = count;
+            saveCartToLocalStorage();
+
+            // Enable or disable checkout button based on total price and available quantity
+            if (totalPrice >= 100 && allAvailable) {
+                checkoutBtn.removeAttribute('disabled');
+            } else {
+                checkoutBtn.setAttribute('disabled', 'disabled');
+            }
+        }
+
+        function changeQuantity(key, newQuantity) {
+            if (newQuantity <= 0) {
+                delete listCards[key];
+            } else {
+                listCards[key].quantity = newQuantity;
+            }
+            reloadCard();
+        }
+
+        checkoutForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let cartData = listCards.filter(item => item != null);
+            fetch('/api/clear-cart', {
+                method: 'POST'
+            }).then(() => {
+                localStorage.removeItem('cartItems'); // Clear cart items from local storage
+                cartDataInput.value = JSON.stringify(cartData);
+                checkoutForm.submit();
+            });
+        });
+
+        function onChange(event) {
+            search = event.target.value;
+        }
+
+        function searchItems() {
+            let searchTerm = search.trim().toLowerCase();
+            let searchedItem = products.find(product => product.name.toLowerCase() === searchTerm);
+
+            // Clear previous search results
+            searchDiv.innerHTML = '';
+
+            if (searchedItem) {
+                let newDiv = document.createElement('div');
+                newDiv.classList.add('item');
+                newDiv.innerHTML = `
+            <div class="available">Available: ${searchedItem.quantity}</div>
+            <img src="/static/images/${searchedItem.image}" alt="${searchedItem.name}">
+            <div class="title">${searchedItem.name}</div>
+            <div class="price">${searchedItem.price.toLocaleString()}</div>`;
+                if (searchedItem.quantity > 0) {
+                    newDiv.innerHTML += `<button onclick="addToCard(${products.indexOf(searchedItem)})">Add To Cart</button>`;
+                } else {
+                    newDiv.innerHTML += `<button disabled>Add To Cart (Out of Stock)</button>`;
+                }
+                searchDiv.appendChild(newDiv);
+
+                list.style.display = "none";
+            } else {
+                alert("No Item found");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

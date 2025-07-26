@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .items-table, .items-table th, .items-table td {
+            border: 1px solid #ddd;
+        }
+        .items-table th, .items-table td {
+            padding: 8px;
+            text-align: left;
+        }
+        .expected-time-form {
+            margin-top: 20px;
+        }
+        .expected-time-form input[type="datetime-local"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Orders</h1>
+    {% if orders %}
+        {% for order in orders %}
+        <h2>Order ID: {{ order.order_id }}</h2>
+        <p>Phone Number: {{ order.phone_number }}</p>
+        <p>Total Amount: {{ order.total_amount }}</p>
+        <p>Order Date: {{ order.order_date }}</p>
+        <p>User Name: {{ order.user_name }}</p>
+        <p>Expected Delivery Time: {{ order.expected_delivery_time if order.expected_delivery_time else "Not set" }}</p>
+        <table class="items-table">
+            <thead>
+                <tr>
+                    <th>Vegetable Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.item %}
+                <tr>
+                    <td>{{ item.vegetable_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form class="expected-time-form" method="post" action="{{ url_for('updateorder') }}">
+            <input type="hidden" name="order_id" value="{{ order.order_id }}">
+            <label for="expected_delivery_time_{{ order.order_id }}">Set Expected Delivery Time:</label>
+            <input type="datetime-local" id="expected_delivery_time_{{ order.order_id }}" name="expected_delivery_time">
+            <button type="submit">Update</button>
+        </form>
+        <hr>
+        {% endfor %}
+    {% else %}
+        <p>No orders to Update.</p>
+    {% endif %}
+</body>
+</html>

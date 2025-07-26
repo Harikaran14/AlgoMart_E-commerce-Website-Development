@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #4CAF50;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .message {
+            background-color: #ffcc00;
+            color: #333;
+        }
+
+        .error {
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .success {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .info {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .time-left {
+            margin-top: 20px;
+        }
+
+        .time-left span {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .time-left strong {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Order Tracking</h1>
+        <form action="/tracking" method="post">
+            <label for="billnumber">Enter your tracking number:</label>
+            <input type="text" id="billnumber" name="billnumber" required>
+            <button type="submit">Track Order</button>
+        </form>
+
+        
+        {% if d is none %}
+        <div>Not Shipped</div>
+        {% endif %}
+        {% if d is not none %}
+        <div class="time-left">
+            <p>Time left for your order to be delivered:</p>
+            <span><strong>Days:</strong> {{ d }}</span>
+            <span><strong>Hours:</strong> {{ h }}</span>
+            <span><strong>Minutes:</strong> {{ m }}</span>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

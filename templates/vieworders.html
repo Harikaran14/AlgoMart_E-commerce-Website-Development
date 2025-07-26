@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Orders</title>
+    <style>
+        body {
+            background-color: #89e781;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .container {
+            width: 1000px;
+            margin: auto;
+            transition: 0.5s;
+        }
+
+        h1 {
+            text-align: left;
+            color: rgba(60, 109, 4, 0.856);
+            text-shadow: #1d421a;
+            text-decoration: underline brown;
+            margin-top: 50px;
+        }
+
+        h3,
+        p {
+            color: #333;
+            margin: 5px 0;
+        }
+
+        h4 {
+            color: #444;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        .filter-container {
+            margin-bottom: 20px;
+        }
+
+        .filter-container input {
+            padding: 8px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>User Orders</h1>
+        <div class="filter-container">
+            <label for="phoneFilter">Filter by Phone Number:</label>
+            <input type="text" id="phoneFilter" placeholder="Enter phone number">
+            <label for="orderFilter">Filter by Order Number:</label>
+            <input type="text" id="orderFilter" placeholder="Enter order number">
+            <label for="dateFilter">Filter by Order Date:</label>
+            <input type="date" id="dateFilter">
+        </div>
+        <div id="orders">
+            {% for phone_number, orders in orders.items() %}
+            <div class="order-group" data-phone="{{ phone_number }}">
+                <h3>Username: {{ user_name }}</h3>
+                <h3>Phone Number: {{ phone_number }}</h3>
+                {% for order_id, details in orders.items() %}
+                <div class="order" data-order="{{ order_id }}" data-date="{{ details.order_date }}">
+                    <h3>Order ID: {{ order_id }}</h3>
+                    <p>Total Amount: {{ details.total_amount }}</p>
+                    <p>Order Date: {{ details.order_date }}</p>
+                    <p>Expected Date: {{ details.expected_delivery }}</p>
+                    <h4>Items:</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Vegetable Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in details.order_items %}
+                            <tr>
+                                <td>{{ item.vegetable_name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endfor %}
+                <hr>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        document.getElementById('phoneFilter').addEventListener('input', function() {
+            var filterValue = this.value.toLowerCase();
+            var orders = document.querySelectorAll('.order-group');
+            orders.forEach(function(order) {
+                var phoneNumber = order.getAttribute('data-phone');
+                if (phoneNumber.includes(filterValue)) {
+                    order.style.display = '';
+                } else {
+                    order.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('orderFilter').addEventListener('input', function() {
+            var filterValue = this.value.toLowerCase();
+            var orderDetails = document.querySelectorAll('.order');
+            orderDetails.forEach(function(details) {
+                var orderId = details.getAttribute('data-order');
+                if (orderId.includes(filterValue)) {
+                    details.style.display = '';
+                } else {
+                    details.style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('dateFilter').addEventListener('input', function() {
+            var filterValue = this.value;
+            var orderDetails = document.querySelectorAll('.order');
+            orderDetails.forEach(function(details) {
+                var orderDate = details.getAttribute('data-date');
+                if (orderDate === filterValue) {
+                    details.style.display = '';
+                } else {
+                    details.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

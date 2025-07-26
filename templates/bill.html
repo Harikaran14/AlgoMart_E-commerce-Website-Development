@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABC VEGETABLES</title>
+    <style>
+        body {
+            font-family: 'Bahnschrift SemiBold';
+            background-color: #76f191;
+            background-image: url('/static/images/pic2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .center {
+            text-align: center;
+            margin-top: 0.5em;
+            color: rgb(14, 3, 14);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: rgba(60, 109, 4, 0.856);
+            text-shadow: #1d421a;
+            text-decoration: underline brown;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: rgba(173, 243, 154, 0.856);
+            padding: 20px;
+            border-radius: 1em;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        th {
+            background-color: #c7e7a9;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        button, a {
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #1C1F25;
+            border: none;
+            border-radius: .5em;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        button:hover, a:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <font face="Bahnschrift SemiBold" size="60">ABC VEGETABLE STORES</font>
+    </center>
+    <h1>BILL:</h1>
+    <form action="{{ url_for('confirm') }}" method="post">
+        <table>
+            <thead>
+                <tr>
+                    <th>Vegetable</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vegetable in cart_items %}
+                <tr>
+                    <td>{{ vegetable.name }}</td>
+                    <td>{{ vegetable.quantity }}</td>
+                    <td>{{ vegetable.price }}</td>
+                    <td>{{ vegetable.total_value }}</td>
+                </tr>
+                {% endfor %}
+                <tr class="total-row">
+                    <td colspan="3">Bill Amount</td>
+                    <td>{{ total }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">PLACE ORDER</button>
+        <a href="{{ url_for('orderpg') }}">BACK</a>
+    </form>
+</body>
+
+</html>

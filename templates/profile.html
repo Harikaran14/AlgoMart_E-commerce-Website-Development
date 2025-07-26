@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .profile-section,
+        .orders-section {
+            margin: 20px 0;
+        }
+
+        .profile-section h2,
+        .orders-section h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Button */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 600px) {
+            table,
+            th,
+            td {
+                width: 100%;
+                display: block;
+                text-align: right;
+            }
+
+            th,
+            td {
+                padding: 8px;
+            }
+        }
+
+        .update-address-section {
+            margin-top: 20px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .filter-section {
+            margin: 20px 0;
+        }
+
+        .filter-section input {
+            padding: 8px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>User Profile</h1>
+        </header>
+        <div class="profile-section">
+            <h2>User Details</h2>
+            <p><strong>Username:</strong> {{ user_info.username }}</p>
+            <p><strong>Phone Number:</strong> {{ user_info.phone_number }}</p>
+            <p><strong>Address:</strong> {{ user_info.address }}</p>
+        </div>
+        <div class="update-address-section">
+            <button id="showModal" class="button">Update Address</button>
+        </div>
+        <div class="filter-section">
+            <h2>Filter Orders by Date</h2>
+            <input type="date" id="orderDateFilter" />
+        </div>
+        <div class="orders-section">
+            <h2>Orders</h2>
+            {% if user_orders %}
+            <table id="ordersTable">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>Items</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in user_orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.order_date }}</td>
+                        <td>
+                            <ul>
+                                {% for item in order.item %}
+                                <li>{{ item.quantity }} x {{ item.vegetable_name }} @ {{ item.price }} each</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td>Rs {{ order.total_amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No orders found.</p>
+            {% endif %}
+        </div>
+        <div class="back-button">
+            <button onclick="goBack()" class="button">Back</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Update Address</h2>
+            <form action="{{ url_for('update_address') }}" method="POST" id="updateForm">
+                <label for="new_address">New Address:</label>
+                <input type="text" id="new_address" name="new_address" required>
+                <button type="submit" class="button">Update Address</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        document.getElementById('showModal').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'block';
+        });
+
+        document.querySelector('.close').addEventListener('click', function () {
+            document.getElementById('myModal').style.display = 'none';
+        });
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('myModal')) {
+                document.getElementById('myModal').style.display = 'none';
+            }
+        }
+
+        document.getElementById('orderDateFilter').addEventListener('input', function () {
+            var filterValue = this.value;
+            var rows = document.querySelectorAll('#ordersTable tbody tr');
+            rows.forEach(function (row) {
+                var orderDate = row.cells[1].innerText;
+                if (orderDate.startsWith(filterValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Home Page</title>
+    <style>
+        body {
+            background-color: #89e781;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgba(60, 109, 4, 0.856);
+            text-shadow: #1d421a;
+            text-decoration: underline brown;
+            margin-top: 0;
+        }
+
+        a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #1C1F25;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #333;
+        }
+    </style>
+
+    </style>
+</head>
+
+<body>
+    <h1>Owner Home Page</h1>
+    <a href="{{ url_for('update_stock') }}">Update Stock</a>
+    <a href="{{ url_for('updateorder') }}">update Orders</a>
+    <a href="{{url_for('vieworders')}}">View Orders</a>
+</body>
+
+</html>

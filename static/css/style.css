@@ -1,0 +1,277 @@
+body {
+    background-color: #89e781;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+    width: 1000px;
+    margin: auto;
+    transition: 0.5s;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    margin-top: 50px;
+}
+
+header h1 {
+    text-align: left;
+    color: rgba(60, 109, 4, 0.856);
+    text-shadow: #1d421a;
+    text-decoration: underline brown;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+header .shopping {
+    position: relative;
+    text-align: right;
+}
+
+header .shopping img {
+    width: 70px;
+}
+
+header .shopping span {
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    left: 80%;
+    padding: 3px 10px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    margin-top: 50px;
+    transition: all 0.5s ease-in-out; /* Adding transition to the grid layout */
+}
+
+.list .item {
+    text-align: center;
+    background-color: #c7e7a9d0;
+    padding: 20px;
+    letter-spacing: 1px;
+    transition: transform 0.5s ease, background-color 0.3s ease; /* Adding transition to items */
+}
+
+.list .item img {
+    width: 200px;
+    height: 200px;
+    border: #000000;
+    border-radius: 40%;
+    transition: transform 0.3s ease; /* Adding transition to image */
+}
+
+.list .item .title {
+    font-weight: 600;
+}
+
+.list .item .price {
+    margin: 10px;
+}
+
+.list .item button {
+    background-color: #1C1F25;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    transition: background-color 0.3s ease; /* Adding transition to button */
+}
+
+.list .item:hover {
+    transform: scale(1.05); /* Scale up item on hover */
+    background-color: #b2d8a6; /* Change background color on hover */
+}
+
+.list .item img:hover {
+    transform: scale(1.1); /* Scale up image on hover */
+}
+
+.list .item button:hover {
+    background-color: #333; /* Change button color on hover */
+}
+
+.cart {
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 500px;
+    background-color: #ffffff;
+    height: 100%;
+    transition: 0.5s;
+    overflow-y: hidden;
+}
+
+.active .cart {
+    left: calc(100% - 500px);
+}
+
+.cart h1 {
+    color: #E8BC0E;
+    font-weight: 100;
+    margin: 0;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.cart .top {
+    color: #e80e0e;
+    text-align: right;
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    row-gap: 10px;
+}
+
+.cart .listCart {
+    height: calc(100% - 230px); /* Adjust height considering the header and checkout button */
+    overflow-y: auto;
+}
+
+.listCart li {
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    background-color: #ffffff;
+    color: #000000;
+    row-gap: 10px;
+    padding: 10px 0;
+}
+
+.listCart li div {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.listCart li img {
+    width: 80%;
+}
+
+.listCart li button {
+    background-color: rgba(211, 240, 50, 0.959);
+    border: 10px rgba(206, 2, 2, 0.842);
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+}
+
+.listCart .count {
+    padding: 10%;
+    text-align: center;
+}
+
+.cart .checkOut {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cart .checkOut div {
+    background-color: #ec7200;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Adding transition to checkOut divs */
+}
+
+.cart .checkOut div:hover {
+    background-color: #20e80e;
+}
+
+.cart .checkOut div:nth-child(2) {
+    background-color: #1C1F25;
+    color: #fff;
+}
+
+.cart .checkOut div button {
+    font-weight: bolder;
+    color: #fcfbfb;
+    background-color: #ec7200;
+    border: #ec7200;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Adding transition to buttons */
+}
+
+.cart .checkOut div button:hover {
+    color: #000000;
+    background-color: #20e80e;
+    cursor: pointer;
+}
+
+.search-bar{
+    border: none;
+    outline:none;
+    padding:10px 20px;
+    border-radius: 20px;
+}
+
+.search-div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 20px;
+    row-gap: 20px;
+    margin-top: 50px;
+    transition: all 0.5s ease-in-out; /* Adding transition to the grid layout */
+}
+
+.search-div .item {
+    text-align: center;
+    background-color: #c7e7a9d0;
+    padding: 20px;
+    letter-spacing: 1px;
+    transition: transform 0.5s ease, background-color 0.3s ease; /* Adding transition to items */
+}
+
+.search-div .item img {
+    width: 200px;
+    height: 200px;
+    border: #000000;
+    border-radius: 40%;
+    transition: transform 0.3s ease; /* Adding transition to image */
+}
+
+.search-div .item .title {
+    font-weight: 600;
+}
+
+.search-div .item .price {
+    margin: 10px;
+}
+
+.search-div .item button {
+    background-color: #1C1F25;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    transition: background-color 0.3s ease; /* Adding transition to button */
+}
+
+.search-div .item:hover {
+    transform: scale(1.05); /* Scale up item on hover */
+    background-color: #b2d8a6; /* Change background color on hover */
+}
+
+.list .item img:hover {
+    transform: scale(1.1); /* Scale up image on hover */
+}
+
+.search-div .item button:hover {
+    background-color: #333; /* Change button color on hover */
+}
