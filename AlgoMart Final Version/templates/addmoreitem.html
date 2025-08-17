@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimum Amount Required</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .message-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.3em;
+        }
+
+        form {
+            margin-top: 15px;
+        }
+
+        input[type="submit"] {
+            background: #66a6ff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: #558de8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="message-container">
+        <h1>⚠ You need to add a minimum of Rs 200</h1>
+        <h1>Add more and come back</h1>
+        <form action="/addmoreitem" method="post">
+            <input type="submit" value="Add More">
+        </form>
+    </div>
+
+</body>
+</html>

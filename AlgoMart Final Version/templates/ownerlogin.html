@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWNER LOGIN</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        .login-container h1 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        input[type="submit"] {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            background-color: #2980b9;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #1f6391;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>OWNER LOGIN</h1>
+        <form action="/ownerlogin" method="post">
+            <label for="username">USERNAME</label>
+            <input type="text" name="username" placeholder="Type the username" required>
+            
+            <label for="password">PASSWORD</label>
+            <input type="password" name="password" placeholder="Type the password" required>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+{% if error %}
+    <script>
+        alert({{error | tojson}});
+    </script>
+    {% endif %}
+</html>
+
+    <!--
+    <input type="hidden" value={{flash}} id="message">
+    
+    <script>
+        var a=document.getElementById("message")
+        if (a) {
+            alert(a)
+
+        } 
+    </script>-->
+
+
+

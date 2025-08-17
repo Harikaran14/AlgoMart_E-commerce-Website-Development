@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Orders</title>
+    <link rel="icon" href="/static/E-commerce.png">
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4;">
+    <h1 style="text-align: center; color: #333; margin-bottom: 30px;">Orders for Customer</h1>
+
+    {% if orders %}
+        <div style="background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
+            <h2 style="color: #4CAF50;">Customer Name: {{ orders[0][3] }}</h2>
+            <p style="margin: 5px 0; color: #555;">Address: <strong>{{ orders[0][4] }}</strong></p>
+            <p style="margin: 5px 0; color: #555;">Phone Number: <strong>{{ orders[0][5] }}</strong></p>
+            <p style="margin: 5px 0; color: #555;">Email: <strong>{{ orders[0][6] }}</strong></p>
+            
+            <h3 style="color: #333;">Order History:</h3>
+            <ul style="list-style-type: none; padding: 0;">
+                {% for order in orders %}
+                    <li style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px;">
+                        <strong>Order ID:</strong> {{ order[0] }} <br>
+                        <strong>Order Placed Time:</strong> {{ order[1] }} <br>
+                        <strong>Expected By:</strong> {{ order[2] }} <br>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p style="color: #d9534f; text-align: center;">No orders found for this customer.</p>
+    {% endif %}
+</body>
+</html>

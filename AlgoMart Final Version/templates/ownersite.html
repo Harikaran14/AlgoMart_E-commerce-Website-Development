@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWNER SITE</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            padding: 30px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #333;
+        }
+
+        .header h4 {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #66a6ff;
+            color: white;
+            border-radius: 8px;
+        }
+
+        table tr:hover {
+            background-color: #f0f8ff;
+        }
+
+        .total {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #e74c3c;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input[type="date"], input[type="number"] {
+            width: 60%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="date"]:focus, input[type="number"]:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 5px rgba(102, 166, 255, 0.4);
+        }
+
+        input[type="submit"] {
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            background-color: #66a6ff;
+            color: white;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 15px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #558de8;
+            transform: scale(1.05);
+        }
+
+        @media screen and (max-width: 768px) {
+            input[type="date"], input[type="number"] {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ORDERS</h1>
+            <h2>User: {{adr[2]}}</h2>
+            <h2>Bill number: {{ce[0]}}</h2>
+            <h2>Order placed time: {{ce[2]}}</h2>
+            <h2>User Adress: {{adr[3]}}</h2>
+            <h2>User Email: {{adr[4]}}</h2>
+        </div>
+
+        <table>
+            <tr>
+                <th>ITEM</th>
+                <th>QUANTITY</th>
+                <th>PRICE</th>
+            </tr>
+            {% for item in bill %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="total">TOTAL: {{total[0]}}</div>
+
+        <form action="/updateorders" method="post">
+            <input type="date" placeholder="Expected Time" name="expectedby" required>
+            <input type="hidden" value="{{ce[0]}}" name="bn">
+            <input type="submit" value="NEXT ORDER">
+        </form>
+    </div>
+</body>
+</html>
+

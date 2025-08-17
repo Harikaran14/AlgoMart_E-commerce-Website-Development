@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Items</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+            width: 350px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 5px rgba(102, 166, 255, 0.4);
+        }
+        input[type="submit"], input[type="reset"] {
+            background: #66a6ff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background: #558de8;
+        }
+        input[type="reset"] {
+            background: #ff6f61;
+        }
+        input[type="reset"]:hover {
+            background: #e55c50;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>📦 Add New Item</h2>
+        <form action="/ownerUpload" enctype="multipart/form-data" method="post">
+            <input type="text" name="itemName" placeholder="Item Name" required>
+            <input type="text" name="itemCat" placeholder="Item Category" required>
+            <input type="number" name="quantity" value="0" min="0" placeholder="Quantity" required>
+            <input type="number" name="price" placeholder="Price" min="0" step="10" required>
+            <input type="file" name="file" placeholder="Add Image of item" accept="image/*" required>
+            <input type="reset" value="Reset">
+            <input type="submit" value="Add Item">
+        </form>
+    </div>
+</body>
+</html>

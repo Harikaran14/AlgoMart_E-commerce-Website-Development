@@ -1,0 +1,10 @@
+<h1 style="text-align: center; color: green; font-size: 2.5em; margin-top: 20px;">ORDER PLACED SUCCESSFULLY</h1>
+<h2 style="text-align: center; color: #333; font-size: 2em;">BILL NUMBER: <span style="color: blue;">{{billno}}</span></h2>
+<h4 style="text-align: center; color: #555; font-size: 1.2em;">Use the above bill number for tracking purposes</h4>
+<h4 style="text-align: center; color: #555; font-size: 1.2em;">Revisit the site after 30 mins as it takes a maximum of 30 minutes for the time tracking to be updated</h4>
+<form action="/" style="text-align: center; margin-top: 20px;">
+    <input type="submit" value="Home" style="padding: 10px 20px; font-size: 1em; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+</form>
+<form action="/ordersummary/{{billno}}" style="text-align: center; margin-top: 20px;">
+    <input type="submit" value="OrderSummary" style="padding: 10px 20px; font-size: 1em; background-color: #4c6faf; color: white; border: none; border-radius: 5px; cursor: pointer;">
+</form>

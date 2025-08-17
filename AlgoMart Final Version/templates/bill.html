@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BILL</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .bill-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        th {
+            background: #66a6ff;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            color: #333;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .total {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 15px;
+            color: #333;
+        }
+
+        .btn {
+            display: block;
+            background: #66a6ff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            margin: 20px auto 0;
+        }
+
+        .btn:hover {
+            background: #558de8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bill-container">
+        <h1>🧾 Billing</h1>
+        <table>
+            <tr>
+                <th>ITEM</th>
+                <th>QUANTITY</th>
+                <th>RATE</th>
+                <th>TOTAL</th>
+            </tr>
+            {% for item in bill %}
+                <tr>
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[1] * item[2]}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <div class="total">
+            TOTAL: {{total[0]}}
+        </div>
+
+        <form action="/payment" method="post">
+            <input type="submit" value="Proceed to Payment Site" class="btn">
+        </form>
+    </div>
+
+</body>
+</html>

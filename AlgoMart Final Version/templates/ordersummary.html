@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BILL</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            background-image: url('/static/pexels-shvetsa-3987223.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        h1.title {
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+        table {
+            width: 80%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        th {
+            padding: 15px;
+            text-align: left;
+            background-color: #2980b9;
+            color: #000;
+            font-weight: bold;
+        }
+        td {
+            padding: 15px;
+            text-align: left;
+            color: #000;
+        }
+        tr:not(:last-child) {
+            border-bottom: 1px solid #ddd;
+        }
+        .total {
+            margin-top: 20px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="title">ORDER SUMMARY</h1>
+
+    <table>
+        <tr>
+            <th>ITEM</th>
+            <th>QUANTITY</th>
+            <th>RATE</th>
+            <th>TOTAL</th>
+        </tr>
+        {% for item in bill %}
+        <tr>
+            <td>{{item[0]}}</td>
+            <td>{{item[1]}}</td>
+            <td>{{item[2]}}</td>
+            <td>{{item[1] * item[2]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1 class="total">TOTAL: {{total[0]}}</h1>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

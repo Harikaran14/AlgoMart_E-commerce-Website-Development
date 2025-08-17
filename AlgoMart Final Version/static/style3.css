@@ -1,0 +1,328 @@
+body{
+    font-family:sans-serif, Arial, Helvetica;
+    background-color: rgba(52, 178, 83, 0.782);
+
+}
+nav {
+    background-color:rgba(52, 178, 83, 0.782);;
+    color: rgba(0, 0, 0, 0.875);
+    height:60px;
+}
+
+
+nav span{
+    
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+}
+
+nav button{
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    border-style: hidden;
+    width: 100px;
+    height:100%;
+    margin-left: 70%;
+    color: white;
+    
+}
+.shopname{
+    margin-top: 10px;
+    padding-top: 0px;
+}
+
+
+
+#cartbutton :hover{
+    background-color: rgb(204, 204, 204);
+}
+#cartbutton img{
+    width:50%;
+    height:65%;
+    margin-top: 5px;
+}
+.box{
+    display: inline-block;
+    border-color: rgb(201, 196, 196);
+    background-color: whitesmoke;
+    border-style:solid;
+    border-width: 1px;
+    width:28%;
+    padding-bottom: 30px;
+    height: 500px;
+    margin: 1.8%;
+    
+
+}
+.im{
+    height:60%;
+
+}
+.im img{
+    border-radius: 5px;
+    width:100%;
+    height:75%;
+   
+}
+.top{
+    height: 20%;
+    margin-bottom: 1%;
+}
+.aq{
+    color: black;
+    width:55%;
+    display: inline-block;
+    border-radius: 10%;
+}
+.am{
+    width: 30%;
+    display:inline-block ;
+    margin-left: 10%;
+    border-radius: 10%;
+
+}    
+
+
+.add{
+    height: 10%;
+    width: 20%;
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    text-align: center;
+    border-style: hidden;
+    margin-left: 5%;
+    border-radius: 5px;
+    border-color: #218838;
+    background-color:#218838;
+    color: white;
+}
+.remove{
+    height: 10%;
+    width: 20%;
+    display: inline-block;
+    padding: 10px;
+    margin: 2px;
+    cursor: pointer;
+    text-align: center;
+    border-style: hidden;
+    margin-left: 5%;
+    border-radius: 5px;
+    border-color: rgba(255, 0, 0, 0.733);
+    background-color: rgba(255, 0, 0, 0.733);
+    color: white;
+}
+.Price{
+    display: inline-block;
+    height: 13%;
+    width: 70%;
+    padding-bottom: 40px;
+
+    border-radius: 5%;
+    color: black;
+    text-align: center;
+}
+
+.form{
+    display: inline-block;
+    height: 13%;
+    width: 20%;
+
+}
+
+.form input{
+    padding-right: 90%;
+}
+.Price h1,h3{
+    margin: 0%;
+}
+
+body {
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 2em; /* 32px if body font size is 16px */
+}
+
+p {
+    font-size: 1em; /* 16px if body font size is 16px */
+}
+  
+/* Overlay styles */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for better contrast */
+    position: fixed; /* Use fixed for full viewport coverage */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10; /* Increased z-index for visibility */
+    display: none;
+}
+
+/* Cart styles */
+.overover {
+    background-color: #fff; /* White background for the cart */
+    color: #333; /* Darker text color for readability */
+    width: 40%;
+    max-width: 500px; /* Maximum width for larger screens */
+    height: auto; /* Auto height to fit content */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    position: absolute;
+    z-index: 20; /* Higher z-index than overlay */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the element */
+    display: none;
+}
+
+/* Input styles */
+.overover input {
+    background: #f9f9f9; /* Light background for inputs */
+    border: none;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0; /* More spacing for inputs */
+    font-size: 16px;
+    border-bottom: solid #007BFF 2px; /* Blue bottom border */
+    transition: border-color 0.3s; /* Smooth transition for focus */
+}
+
+.overover input:focus {
+    outline: none; /* Remove default outline */
+    border-color: #0056b3; /* Darker blue on focus */
+}
+
+/* Button styles */
+.overover button {
+    background-color: #007BFF; /* Primary button color */
+    color: white;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px; /* Slightly rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+    font-size: 16px; /* Consistent font size */
+}
+
+.overover button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Placeholder styles */
+.overover input::placeholder {
+    color: #aaa; /* Lighter color for placeholders */
+}
+
+/* Cart item styles */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between items */
+    margin-bottom: 15px; /* More space between items */
+    padding: 10px;
+    border-bottom: 1px solid #eee; /* Subtle border for separation */
+}
+
+.cart-item h4 {
+    margin: 0; /* Remove default margin */
+    font-size: 18px; /* Slightly larger font size */
+    color: #333; /* Darker text for item names */
+}
+
+/* Submit button styles for cart items */
+.cart-item input[type="submit"] {
+    background-color: #28a745; /* Green color for submit buttons */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.cart-item input[type="submit"]:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+/* Medium screens */
+@media (max-width: 1200px) {
+    body {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 1.8em; /* 25.2px if body font size is 14px */
+    }
+
+    p {
+        font-size: 1em; /* 14px if body font size is 14px */
+    }
+    nav button{
+        height: 95%;
+        margin-left: 50%;
+    }  
+}
+
+/* Small screens */
+@media (max-width: 868px) {
+    body {
+        font-size: 10px;
+    }
+
+    h1 {
+        font-size: 1.6em; /* 19.2px if body font size is 12px */
+    }
+
+    p {
+        font-size: 1em; /* 12px if body font size is 12px */
+    }
+    nav button{
+        height: 95%;
+        margin-left: 40%;
+    }    
+}
+
+/* Extra small screens */
+@media (max-width: 688px) {
+    body {
+        font-size: 8px;
+    }
+
+    h1 {
+        font-size: 1.4em; /* 14px if body font size is 10px */
+    }
+
+    p {
+        font-size: 1em; /* 10px if body font size is 10px */
+    }
+    nav button{
+        height: 95%;
+        margin-left: 20%;
+    }  
+
+}
+@media (max-width: 488px) {
+    body {
+        font-size: 8px;
+    }
+    
+    h1 {
+        font-size: 1.4em; /* 14px if body font size is 10px */
+    }
+   
+    p {
+        font-size: 1em; /* 10px if body font size is 10px */
+    }
+    nav button{
+        height: 95%;
+        width: 50%;
+        margin-left: 2%;
+    }                   
+}

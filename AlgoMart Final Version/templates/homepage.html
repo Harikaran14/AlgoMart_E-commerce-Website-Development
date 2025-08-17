@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomePage</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <meta http-equiv="refresh" content="60">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .shopname {
+            font-size: 1.5em;
+        }
+
+        #cartbutton {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        #cartbutton img {
+            width: 35px;
+            height: 35px;
+        }
+
+        .box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .top h1, .top h2 {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .im img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .Price h1 {
+            margin: 5px 0;
+        }
+
+        .add, .remove, #back {
+            background: #66a6ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .add:hover, .remove:hover, #back:hover {
+            background: #558de8;
+        }
+
+        .overlay, .overover {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+        }
+
+        .overlay {
+            background: rgba(0,0,0,0.5);
+            display: none; /* Shown via JS */
+        }
+
+        .overover {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            display: none; /* Shown via JS */
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .add {
+    background: #28a745; /* Green */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.add:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.remove {
+    background: #dc3545; /* Red */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.remove:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+#back {
+    background: #007bff; /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+}
+
+#back:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+#back1 {
+    background: #007bff; /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+}
+
+#back1:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+nav form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    max-width: 400px;
+  }
+
+  nav form input[type="text"] {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  nav form input[type="text"]:focus {
+    border-color: #007bff; /* blue highlight */
+  }
+
+  nav form input[type="submit"] {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+
+  nav form input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+    </style>
+</head>
+<body>
+    
+    <nav>    
+      <span class="shopname" style="color: rgba(0, 0, 0, 0.856);">AlgoMart</span>
+      <form method="post" action="/homepage">
+        <input type="text" name="search" placeholder="Search">
+        <input type="submit" value="Ok">
+      </form>
+      
+      <button id="cartbutton"><img src="/static/cart.png" alt="Cart"></button>
+    </nav>
+
+    {% for item in items %}
+    <div class="box">
+        <div class="top">
+            <div class="aq">
+                <h1>AVAILABLE QUANTITY: {{ item[1] }}</h1>
+            </div>
+            <div class="am">
+                <h2>Amt added: {{ cart.get(item[0],0) }} unit</h2>
+            </div>
+        </div>
+        <div class="im">
+            <img src="/static/productimages/{{item[0]}}.jpg"  >
+            <img src="/static/productimages/{{item[0]}}.jpeg"  >
+        </div>
+        <div class="Price">
+            <h1>{{ item[0] }}</h1>
+            <h3>Price: Rs. {{ item[2] }} </h3>
+        </div>
+        <div class="form">
+          <form action="/homepage/additem" method="post">
+            <input type="hidden" name="item" value="{{ item[0] }}">
+            <input type="submit" value="Add" class="add">
+          </form>
+          <form action="/homepage/removeitem" method="post">
+            <input type="hidden" name="item" value="{{ item[0] }}">
+            <input type="submit" value="Remove" class="remove">
+          </form>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="overlay"></div>
+    <div class="overover">
+        <h2>CART</h2>
+        {% for i in cart %}
+        <div class="cart-item">
+            <form action="/homepage/additem" method="post">
+                <input type="hidden" name="item" value="{{ i }}">
+                <input type="submit" value="Add" class="add">
+            </form>
+            <h1>{{ i }} : {{ cart[i] }}</h1>
+            <form action="/homepage/removeitem" method="post">
+                <input type="hidden" name="item" value="{{ i }}">
+                <input type="submit" value="Remove" class="remove">
+            </form>
+        </div>
+        {% endfor %}
+
+        <form action="/homepage" method="post">
+          <input type="submit" value="Add Other Items" id="back">
+        </form>
+        <form action="/bill" method="post">
+          <input type="submit" value="Proceed to Bill" id="back1" >
+        </form>
+    </div>                       
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

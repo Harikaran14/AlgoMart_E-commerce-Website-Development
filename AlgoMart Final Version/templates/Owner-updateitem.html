@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Items</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #89f7fe, #66a6ff);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 50px 0;
+        }
+
+        .form-container {
+            background: #ffffffcc; /* Slight transparency */
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 380px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 1.8em;
+        }
+
+        form {
+            margin-bottom: 30px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            align-items: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            color: #444;
+            font-size: 1.3em;
+        }
+
+        input[type="number"] {
+            width: 70%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="number"]:focus {
+            border-color: #66a6ff;
+            box-shadow: 0 0 5px rgba(102, 166, 255, 0.4);
+        }
+
+        input[type="submit"], input[type="reset"] {
+            width: 48%;
+            padding: 12px 0;
+            margin: 10px 1%;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+
+        input[type="reset"] {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #d32f2f;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 420px) {
+            .form-container {
+                width: 90%;
+                padding: 30px 20px;
+            }
+
+            input[type="submit"], input[type="reset"] {
+                width: 100%;
+                margin: 8px 0;
+            }
+        }
+.leave-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background: #f44336; /* red */
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.leave-btn:hover {
+    background: #d32f2f;
+}
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>📦 Update Product Details</h2>
+        <a href="/view_orderitems" class="leave-btn">Leave</a>
+        {% for i in prod %}
+        <form action="/updateitem" enctype="multipart/form-data" method="post">
+            <h1>{{ i[0] }}</h1>
+            <input type="hidden" name="item" value="{{ i[0] }}">
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" value="{{ i[1] }}" min="0" placeholder="Quantity">
+            <label for="price">Price </label>
+            <input type="number" name="price" value="{{ i[2] }}" min="0" step="1" placeholder="Price">
+            <input type="reset" value="Reset">
+            <input type="submit" value="Save Changes">
+        </form>
+        {% endfor %}
+    </div>
+</body>
+</html>

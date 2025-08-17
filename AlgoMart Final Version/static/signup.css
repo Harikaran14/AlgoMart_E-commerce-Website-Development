@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif; /* Set a clean font for the page */
+    background-color: #f4f4f4; /* Light gray background for the body */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-image: url('pexels-shvetsa-3987223.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    color: #ffffff; /* Dark text color for headers */
+    margin: 20px 0; /* Space above and below headers */
+}
+
+form {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack form elements vertically */
+    align-items: center; /* Center form elements */
+    background-color: #22161694; /* Semi-transparent background for the form */
+    border-radius: 8px; /* Rounded corners for the form */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px; /* Padding inside the form */
+    max-width: 400px; /* Max width for the form */
+    margin: auto; /* Center the form horizontally */
+}
+
+input[type="text"] {
+    width: 100%; /* Full width input fields */
+    padding: 10px; /* Padding inside input fields */
+    margin: 10px 0; /* Space above and below input fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners for input fields */
+    color: black; /* Text color for input */
+    font-size: 1em; /* Font size for input text */
+}
+
+/* Change the color of the placeholder text to black */
+input[type="text"]::placeholder {
+    color: black; /* Set placeholder text color to black */
+    opacity: 1; /* Ensure the placeholder is fully opaque */
+}
+
+input[type="submit"] {
+    background-color: #2980b9; /* Blue background for submit button */
+    color: #fff; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for button */
+    font-size: 1em; /* Button font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+input[type="submit"]:hover {
+    background-color: #3498db; /* Lighter blue on hover */
+}

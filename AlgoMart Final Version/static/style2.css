@@ -1,0 +1,99 @@
+body{
+    font-family:sans-serif, Arial, Helvetica;
+    background-color: black;
+    background-image: url(pexels-shvetsa-3987223.jpg);
+    background-attachment: fixed;
+    background-position:center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+div {
+    margin: 0%;
+    display: inline-block;
+    width: 32%;
+    height:100%;
+    margin-top: 20%;
+}
+
+.heading{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.862);
+    margin-top: 5%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5%;
+}
+
+.but {
+    background-color: antiquewhite;
+    color: black;
+    text-align: center;
+    border-radius: 5%;
+    width: 99%;
+    height: 10%;
+    cursor: pointer;
+}
+button:active{
+    background-color: rgba(250, 235, 215, 0.556);
+}
+
+body {
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 2em; /* 32px if body font size is 16px */
+}
+
+p {
+    font-size: 1em; /* 16px if body font size is 16px */
+}
+
+/* Medium screens */
+@media (max-width: 1200px) {
+    body {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 1.8em; /* 25.2px if body font size is 14px */
+    }
+
+    p {
+        font-size: 1em; /* 14px if body font size is 14px */
+    }
+ 
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+    body {
+        font-size: 10px;
+    }
+
+    h1 {
+        font-size: 1.6em; /* 19.2px if body font size is 12px */
+    }
+
+    p {
+        font-size: 1em; /* 12px if body font size is 12px */
+    }
+  
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    body {
+        font-size: 8px;
+    }
+
+    h1 {
+        font-size: 1.4em; /* 14px if body font size is 10px */
+    }
+
+    p {
+        font-size: 1em; /* 10px if body font size is 10px */
+    }
+ 
+}

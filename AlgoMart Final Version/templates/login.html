@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUSTOMER LOGIN</title>
+    <link rel="icon" href="/static/E-commerce.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            background-image: url('/static/pexels-shvetsa-3987223.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ecf0f1;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            width: 300px;
+            text-align: center;
+        }
+        h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #2c3e50;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h3>CUSTOMER LOGIN</h3>
+        <form action="/customerlogin" method="post">
+            <label for="phone_no">PHONE NUMBER</label>
+            <input type="text" id="phone_no" name="phone_no" placeholder="Type your phone number" required>
+            
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" name="password" placeholder="Type your password" required>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+{% if error %}
+    <script>
+        alert({{error | tojson}});
+    </script>
+    {% endif %}
+</html>
